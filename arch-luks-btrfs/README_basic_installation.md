@@ -74,3 +74,6 @@ GRUB_CMDLINE_LINUX="cryptdevice=/dev/sda2:system"</br>
 -> **exit**</br>
 -> **exit**</br>
 -> **reboot**</br>
+
+</br>
+I've read a few articles and official documentation but always had some issues so nothing worked for me. That is why I decided to create a small set of notes compiled out of many articles (sorry, I don't remember which of them to refer because I copied commands to my sublimetext from there when I experimented with the installation).
