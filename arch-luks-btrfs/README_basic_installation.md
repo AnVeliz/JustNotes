@@ -1,4 +1,4 @@
-# The file contsins commands which I entered to set up my basic Arch Linux configuration (UEFI system + LUKS + BTRFS + almost minimal Arch Linux).
+# The file contains commands which I entered to set up my basic Arch Linux configuration (UEFI system + LUKS + BTRFS + almost minimal Arch Linux).
 
 ### Connect to the Internet</br>
 -> **wpa_passphrase *SSID* > /tmp/mywifi**</br>
