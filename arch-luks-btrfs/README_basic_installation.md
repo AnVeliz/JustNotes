@@ -1,3 +1,5 @@
+# The file contsins commands which I entered to set up my basic Arch Linux configuration.
+
 ### Connect to the Internet</br>
 -> **wpa_passphrase *SSID* > /tmp/mywifi**</br>
 E.g.: -> wpa_passphrase MyHomeWifiNet > /tmp/mywifi</br>
