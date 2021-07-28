@@ -58,6 +58,7 @@ Note: in section "HOOKS" add "encrypt" before "filesystems"</br>
 
 ### Change root password</br>
 -> **passwd root**</br>
+Note: You need to enter a new root password
 
 ### Set up bootloader, etc.
 Note: Enter new root password</br>
