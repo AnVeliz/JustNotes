@@ -17,7 +17,7 @@ E.g.: -> btrfs subvolume snapshot -r / /.snapshots/initial_system_rosnap</br>
 E.g.: btrfs subvolume delete /.snapshots/initial_system_snap</br>
 
 
-### Restore root from a snapshot!</br>
+### Restore root from a snapshot (we need to load the system from a snapshot using kernel boot parameters)!</br>
 -> **o=defaults,x-mount.mkdir**</br>
 -> **o_btrfs=$o,compress=lzo,ssd,noatime**</br>
 -> **mount -t btrfs -o subvol=root,$o_btrfs LABEL=system /mnt**</br>
