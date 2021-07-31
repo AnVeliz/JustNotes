@@ -43,7 +43,7 @@ E.g.: -> cryptsetup open /dev/sda2 system</br>
 E.g.: -> mount /dev/sda1 /mnt/boot</br>
 
 ### Prepare ArchLinux
--> **pacstrap -i /mnt base base-devel linux linux-firmware btrfs-progs nano**</br>
+-> **pacstrap -i /mnt base base-devel linux linux-firmware btrfs-progs nano vi vim**</br>
 Notes: the list of packages can be different later so you need to take a look at the official documentation. The list here is what I used to set up my system.</br>
 -> **genfstab -p /mnt >> /mnt/etc/fstab**</br>
 -> **arch-chroot /mnt**</br>
