@@ -8,6 +8,9 @@ E.g.: -> passwd me</br>
 -> **usermod --append --groups wheel *USER_NAME***</br>
 E.g.: -> usermod --append --groups wheel me</br>
 
+### Add sudo group</br>
+-> **groupadd sudo**</br>
+
 ### Add SUDO permissions to the user</br>
 -> **EDITOR=nano visudo**</br>
 Notes: we need to uncomment: **%wheel ALL=(ALL) ALL** and **%sudo ALL=(ALL) ALL**</br>
