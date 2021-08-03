@@ -16,5 +16,3 @@ E.g.: -> usermod --append --groups wheel me</br>
 -> **EDITOR=nano visudo**</br>
 Notes: we need to uncomment: **%wheel ALL=(ALL) ALL** and **%sudo ALL=(ALL) ALL**</br>
 
-### Allow sudo to be called by users</br>
--> **chmod 4755 /usr/bin/sudo**</br>
