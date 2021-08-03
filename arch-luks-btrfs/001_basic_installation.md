@@ -67,8 +67,7 @@ Note: Enter new root password</br>
 -> **pacman -S grub efibootmgr**</br>
 -> **nano /etc/default/grub**</br>
 Notes:</br>
-GRUB_ENABLE_CRYPTODISK=y</br>
-GRUB_CMDLINE_LINUX="cryptdevice=/dev/sda2:system"</br>
+GRUB_CMDLINE_LINUX=""cryptdevice=/dev/sda2:system""</br>
 -> **grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB**</br>
 -> **grub-mkconfig -o /boot/grub/grub.cfg**
 
