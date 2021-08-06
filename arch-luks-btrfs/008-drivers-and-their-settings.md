@@ -1,4 +1,4 @@
-# The final thing is to install audio device and other hardware related things</br>
+# The final thing is to install hardware settings</br>
 
 ### On my machine I need only to install audio</br>
 -> **pacman -S alsa-utils pulseaudio pulseaudio-alsa pulseaudio-bluetooth pulseaudio-equalizer**</br>
