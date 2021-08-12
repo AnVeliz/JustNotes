@@ -13,24 +13,24 @@
     "/usr/lib/systemd/boot/efi/linuxx64.efi.stub" "arch-unified-unsigned.efi"**
 
 ### Create certificates
--> **openssl req -new -x509 -newkey rsa:2048 -subj "/CN=SecureBoot PK/" -keyout "PK.key" -out "PK.crt" -days 3650 -nodes -sha256**</br>
--> **openssl req -new -x509 -newkey rsa:2048 -subj "/CN=SecureBoot KEK/" -keyout "KEK.key" -out "KEK.crt" -days 3650 -nodes -sha256**</br>
--> **openssl req -new -x509 -newkey rsa:2048 -subj "/CN=SecureBoot db/" -keyout "db.key" -out "db.crt" -days 3650 -nodes -sha256**</br>
+-> **openssl req -new -x509 -newkey rsa:2048 -subj "/CN=SecureBoot PK/" -keyout PK.key -out PK.crt -days 3650 -nodes -sha256**</br>
+-> **openssl req -new -x509 -newkey rsa:2048 -subj "/CN=SecureBoot KEK/" -keyout KEK.key -out KEK.crt -days 3650 -nodes -sha256**</br>
+-> **openssl req -new -x509 -newkey rsa:2048 -subj "/CN=SecureBoot db/" -keyout db.key -out db.crt -days 3650 -nodes -sha256**</br>
 
--> **openssl x509 -in "PK.crt" -inform PEM -out "PK.der" -outform DER**</br>
--> **openssl x509 -in "KEK.crt" -inform PEM -out "KEK.der" -outform DER**</br>
--> **openssl x509 -in "db.crt" -inform PEM -out "db.der" -outform DER**</br>
+-> **openssl x509 -in "PK.crt" -inform PEM -out PK.der -outform DER**</br>
+-> **openssl x509 -in "KEK.crt" -inform PEM -out KEK.der -outform DER**</br>
+-> **openssl x509 -in "db.crt" -inform PEM -out db.der -outform DER**</br>
 
 ### Create UEFI compatible signatures
 -> **uudigen --random > GUID.txt**</br>
 
--> **sbsiglist --owner "$(< GUID.txt)" --type x509 --output "PK.esl" "PK.der"**</br>
--> **sbsiglist --owner "$(< GUID.txt)" --type x509 --output "KEK.esl" "KEK.der"**</br>
--> **sbsiglist --owner "$(< GUID.txt)" --type x509 --output "db.esl" "db.der"**</br>
+-> **sbsiglist --owner "$(< GUID.txt)" --type x509 --output PK.esl PK.der**</br>
+-> **sbsiglist --owner "$(< GUID.txt)" --type x509 --output KEK.esl KEK.der**</br>
+-> **sbsiglist --owner "$(< GUID.txt)" --type x509 --output db.esl db.der**</br>
 
--> **sbvarsign --key PK.key --cert PK.crt --output "PK.auth" PK PK.esl**</br>
--> **sbvarsign --key PK.key --cert PK.crt --output "KEK.auth" KEK KEK.esl**</br>
--> **sbvarsign --key KEK.key --cert KEK.crt --output "db.auth" PK db.esl**</br>
+-> **sbvarsign --key PK.key --cert PK.crt --output PK.auth PK PK.esl**</br>
+-> **sbvarsign --key PK.key --cert PK.crt --output KEK.auth KEK KEK.esl**</br>
+-> **sbvarsign --key KEK.key --cert KEK.crt --output db.auth PK db.esl**</br>
 
 ### Sign the Unified Kernel
 -> **sbsign --key new_efi_vars/db.key --cert new_efi_vars/db.crt --output bootloader/arch-unified-signed.efi bootloader/arch-unified-unsigned.efi**</br>
