@@ -32,8 +32,9 @@
 -> **sbvarsign --key PK.key --cert PK.crt --output KEK.auth KEK KEK.esl**</br>
 -> **sbvarsign --key KEK.key --cert KEK.crt --output db.auth PK db.esl**</br>
 
-### Sign the Unified Kernel
+### Sign the Unified Kernel (choose one of two options - the first one doesn't work on some firmwares because the signature is not 100% correct for some PE/COFF files)
 -> **sbsign --key new_efi_vars/db.key --cert new_efi_vars/db.crt --output bootloader/arch-unified-signed.efi bootloader/arch-unified-unsigned.efi**</br>
+-> **osslsigncode sign -certs new_efi_vars/db.der -key new_efi_vars/db.key -in bootloader/arch-unified-unsigned.efi -out bootloader-arch-unified-signed.efi**</br>
 
 ### Copy the Unified Kernel to a proper location
 -> **mkdir /boot/EFI/Linux**</br>
