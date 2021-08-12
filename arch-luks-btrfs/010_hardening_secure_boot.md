@@ -46,13 +46,13 @@
 You need to remove all variables from your BIOS. Be careful since you can brake your computer doing this. More detailed information can be found in the official doc.
 
 ### Update UEFI db variable as the first step of variables update (choose one of the two approaches below)
--> **efi-updatevar -e -f old_db.esl db**</br>
+-> **efi-updatevar -e -f db.esl db**</br>
 -> **efi-updatevar -e -b /boot/EFI/Linux/arch-unified-unsigned.efi**</br>
 Notes: It might be that the signed kernel can't be loading with a secure boot error. As an overcome, you can add your kernel hash to **db** variable.
 However, you would need to add new hashes every time you update the kernel.
 
 ### Update UEFI KEK variable as the second step
--> **efi-updatevar -e -f old_KEK.esl KEK**</br>
+-> **efi-updatevar -e -f KEK.esl KEK**</br>
 
 ### Update UEFI PK variable as the third step (it will lock UEFI to user mode)
 -> **efi-updatevar -f PK.auth PK**</br>
