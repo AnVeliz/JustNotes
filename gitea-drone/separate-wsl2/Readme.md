@@ -1,51 +1,39 @@
-Modify HOSTS file to have static addresses for the services we are going to use:
+### Modify HOSTS file to have static addresses for the services we are going to use (or change DNS records on domain level)</br>
+127.0.0.1 gitea</br>
+127.0.0.1 drone</br>
 
-127.0.0.1 gitea
-127.0.0.1 drone
+### Create docker network</br>
+docker network create gitea-net</br>
 
+### Set up and configure Gitea</br>
+-> docker-compose.exe -f 001-docker-compose-gitea.yml up -d</br>
+Navigate to Gitea page in your browser and set login + password + email</br>
+Click set up button</br>
 
-Create docker network:
-docker network create gitea-net
+### Set up Drone</br>
+Go to settings in gitea and create OAuth application</br>
 
+name: drone</br>
+redirect URL: http://drone/login</br>
 
+You will get OAuth secrets which you should set to docker-compose-drone.yml e.g.:</br>
 
+client id: fd2ebbfe-f30a-4a9c-a5e4-5a9af3e078a9</br>
+client secret: YNtkT0tw9aMm9C7mkQBLCkLVduK4tjhpOjzSPe67BlkM</br>
 
-GITEA
+Then you need to generate a secret for runners which should be connected to your Drone server:</br>
+-> openssl rand -hex 16</br>
 
-set login and password for both gitea server and postgresql in 001-docker-compose-gitea.yml
-go to localhost:3000 and set user name and password there plus email
-click set up button
+You will get e.g.:</br>
+secret: bea26a2221fd8090ea38720fc445eca6</br>
 
+Set the secret to docker-compose-drone.yml</br>
 
-docker-compose.exe -f 001-docker-compose-gitea.yml up -d
+Run the container:</br>
+docker-compose.exe -f 002-docker-compose-drone-server.yml up -d</br>
 
+### Set up a Drone agent
+Set drone server host, protocol and secret key in 003-docker-compose-drone-agent.yml
 
-
-
-
-DRONE
-go to settings in gitea and create OAuth application
-
-name: drone
-redirect URL: http://drone:3001/login
-
-
-
-get OAuth secret and set them to docker-compose-drone.yml:
-
-client id: fd2ebbfe-f30a-4a9c-a5e4-5a9af3e078a9
-client secret: YNtkT0tw9aMm9C7mkQBLCkLVduK4tjhpOjzSPe67BlkM
-
-generate secret for runners connecting using e.g.: openssl rand -hex 16
-secret: bea26a2221fd8090ea38720fc445eca6
-set the secret to docker-compose-drone.yml
-
-
-docker-compose.exe -f 002-docker-compose-drone-server.yml up -d
-
-
-
-DRONE_AGENT
-set drone server host, protocol and secret key in 003-docker-compose-drone-agent.yml
-
+Run the container
 docker-compose.exe -f 003-docker-compose-drone-agent.yml up -d
