@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  drone:
+    image: drone/drone:latest
+    environment:
+      - DRONE_DEBUG=true
+      - DRONE_ADMIN=root
+      - DRONE_USER_CREATE=username:root,admin:true
+      - DRONE_GITEA_SERVER=http://gitea:3000
+      - DRONE_GITEA_CLIENT_ID=38d36578-12c1-4c5d-8a2a-b7be50e9670f
+      - DRONE_GITEA_CLIENT_SECRET=A4qkPiLvTNiCM6liaRTCXS0yHscFT1CnN2FcpuOh9mQ9
+      - DRONE_RPC_SECRET=bea26a2221fd8090ea38720fc445eca7
+      - DRONE_SERVER_HOST=drone
+      - DRONE_SERVER_PROTO=http
+      - DRONE_GIT_ALWAYS_AUTH=true
+      - DRONE_LOGS_DEBUG=true
+    restart: always
+    volumes:
+      - ./drone:/data
+    ports:
+      - 80:80
+
+networks: 
+  default: 
+    external: 
+      name: gitea-net
